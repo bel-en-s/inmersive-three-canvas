@@ -10,12 +10,15 @@ import styled from "styled-components";
 
 function App() {
   const { scrollYProgress } = useScroll();
+  const { scrollXProgress } = useScroll();
   const x = useTransform(scrollYProgress, [0, 1], [0, 800]);
+  const y = useTransform(scrollXProgress, [0, 1], [40, 800]);
   const Heading = styled.h1`
-  font-family: "Durer", sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 32px;
   font-weight: bold;
   color: #333;
+  paddingTop: 50px;
   /* Add any other desired typography styles */
 `;
 
@@ -30,27 +33,43 @@ function App() {
 
         <div style={{ position: "fixed", zIndex: 9999 }}>
         <motion.h1 className="myHeading" style={{ x }}>
-          <Heading> HOLAAAA</Heading>
+          <Heading> ¡Todo era amor… amor!
+          </Heading>
+        </motion.h1>
+      </div>
+      <div style={{ position: "fixed",paddingTop:'20px',paddingLeft:'20px', zIndex: 9999 }}>
+        <motion.h1 className="myHeading" style={{ x }}>
+          <Heading> No había nada más que amor.
+          </Heading>
+        </motion.h1>
+      </div>
+      <div style={{ position: "fixed",paddingTop:'40px',paddingLeft:'40px', zIndex: 9999 }}>
+        <motion.h1 className="myHeading" style={{ x }}>
+          <Heading> En todas partes se encontraba amor.
+          </Heading>
         </motion.h1>
       </div>
       <div style={{ display: "flex" }}>
         <Canvas style={{ width: "50vw", height: "80vh" }}>
         <SphereBackground/>
         </Canvas>
-        <Canvas style={{ width: "50vw", height: "80vh" }}>
-          <color attach="background" args={["green"]} />
-          <Experience/>
-        </Canvas>
+     
       </div>
       <div style={{ display: "flex" }}>
         <Canvas style={{ width: "30vw", height: "100vh" }}>
         <Experience/>
     
         </Canvas>
-        <Canvas style={{ width: "70vw", height: "100vh" }}>
-          <color attach="background" args={["red"]} />
-          <SphereBackground/>
+        <group style={{ width: "70vw", height: "100vh" }}>
+        <Canvas style={{ width: "30vw", height: "100vh" }}>
+        <Experience/>
         </Canvas>
+        </group>
+        <group style={{ width: "70vw", height: "100vh" }}>
+        <Canvas style={{ width: "30vw", height: "100vh" }}>
+        <Experience/>
+        </Canvas>
+        </group>
       </div>
     </>
   );
